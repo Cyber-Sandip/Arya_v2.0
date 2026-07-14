@@ -4,7 +4,6 @@ import re
 from pathlib import Path
 
 import pyautogui
-import pywhatkit
 
 
 CONTACTS_FILE = Path(__file__).resolve().parents[1] / "data" / "contacts.json"
@@ -85,6 +84,11 @@ def send_whatsapp(contact=None, message=None, phone=None, confirmed=False):
         }
     if not confirmed:
         return {"success": False, "message": "Message is ready but needs your confirmation before sending."}
+
+    try:
+        import pywhatkit
+    except Exception as error:
+        return {"success": False, "message": f"WhatsApp support is unavailable: {error}"}
 
     try:
         # WhatsApp Web opens, waits for it to load, then sends the prepared text.
