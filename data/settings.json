@@ -1,0 +1,6 @@
+{
+  "maintenance_mode": true,
+  "voice_auto_start": true,
+  "camera_enabled": true,
+  "mic_visualizer": true
+}

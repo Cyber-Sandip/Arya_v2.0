@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arya V2.0</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="splash" class="splash">
+    <div class="splash-mark">
+      <span class="splash-ring"></span>
+      <strong>ARYA</strong>
+      <small>desktop assistant core</small>
+    </div>
+  </div>
+<!-- ######### Second part ############### -->
+  <main class="app-shell">
+    <header class="topbar">
+      <section class="brand-lockup">
+        <div class="brand-orbit" aria-hidden="true"></div>
+        <div>
+          <p class="eyebrow">Arya V2.0</p>
+          <h1>Command Deck</h1>
+        </div>
+      </section>
+
+      <section class="top-status">
+        <div class="clock-block">
+          <span class="time">12:00 PM</span>
+          <span class="date">03 Oct</span>
+        </div>
+        <div class="status-pill" id="voiceStatus">Voice offline</div>
+        <button class="icon-btn" id="settingsToggle" type="button" title="Settings">SET</button>
+      </section>
+    </header>
+
+    <section class="dashboard">
+      <aside class="command-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Input Stream</p>
+            <h2>Command History</h2>
+          </div>
+          <button class="ghost-btn" id="clearHistory" type="button">Clear</button>
+        </div>
+        <div class="history-contener" id="historyPanel">
+          <span class="history">Search history will appear here...</span>
+        </div>
+      </aside>
+
+      <section class="core-panel">
+        <div class="core-stage">
+          <div class="scanner-grid" aria-hidden="true"></div>
+          <div class="center-glob">
+            <div class="glob"></div>
+            <div class="glob-ring ring-one"></div>
+            <div class="glob-ring ring-two"></div>
+          </div>
+          <div class="assistant-readout">
+            <span id="modeLabel">ACTIVE MODE</span>
+            <strong id="assistantState">Ready for command</strong>
+          </div>
+        </div>
+
+        <div class="control-strip">
+          <button class="primary-action" id="startArya" type="button">Start Voice</button>
+          <button class="secondary-action" data-action="google" type="button">Google</button>
+          <button class="secondary-action" data-action="youtube" type="button">YouTube</button>
+          <button class="secondary-action" data-action="gmail" type="button">Gmail</button>
+          <button class="secondary-action" data-action="explorer" type="button">Files</button>
+        </div>
+        <form class="command-composer" id="commandForm">
+          <input id="commandInput" type="text" autocomplete="off" placeholder="Type a command, e.g. open WhatsApp or search Python tutorials">
+          <button class="primary-action" type="submit">Run Command</button>
+        </form>
+      </section>
+
+      <aside class="utility-panel">
+        <section class="telemetry-card">
+          <div class="panel-head compact">
+            <div>
+              <p class="eyebrow">System</p>
+              <h2>Telemetry</h2>
+            </div>
+            <button class="ghost-btn" id="refreshStatus" type="button">Refresh</button>
+          </div>
+          <div class="metric-list">
+            <div class="metric">
+              <span>CPU</span>
+              <strong id="cpuMetric">--%</strong>
+            </div>
+            <div class="metric">
+              <span>Memory</span>
+              <strong id="memoryMetric">--%</strong>
+            </div>
+            <div class="metric">
+              <span>Battery</span>
+              <strong id="batteryMetric">--</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="v-contener">
+          <div class="panel-head compact">
+            <div>
+              <p class="eyebrow">Audio</p>
+              <h2>Mic Level</h2>
+            </div>
+            <span class="volume-text">0%</span>
+          </div>
+          <div class="volume-bar">
+            <div class="volume-fill"></div>
+          </div>
+        </section>
+
+        <section class="c-contener">
+          <div class="panel-head compact">
+            <div>
+              <p class="eyebrow">Vision</p>
+              <h2>Camera</h2>
+            </div>
+            <span class="camera-state" id="cameraState">Standby</span>
+          </div>
+          <video id="camera" autoplay playsinline muted></video>
+        </section>
+      </aside>
+    </section>
+
+    <section class="quick-grid">
+      <button class="quick-tile" data-action="calendar" type="button">
+        <span>CAL</span>
+        <strong>Calendar</strong>
+        <small>Open schedule</small>
+      </button>
+      <button class="quick-tile" data-action="logs" type="button">
+        <span>LOG</span>
+        <strong>Logs</strong>
+        <small>Crash report</small>
+      </button>
+      <button class="quick-tile" id="maintenanceShortcut" type="button">
+        <span>MTN</span>
+        <strong>Maintenance</strong>
+        <small>Diagnostics mode</small>
+      </button>
+      <button class="quick-tile" id="historyShortcut" type="button">
+        <span>HIS</span>
+        <strong>History</strong>
+        <small>Review commands</small>
+      </button>
+    </section>
+  </main>
+
+  <aside class="settings-drawer" id="settingsDrawer" aria-hidden="true">
+    <div class="drawer-head">
+      <div>
+        <p class="eyebrow">Maintenance</p>
+        <h2>Settings</h2>
+      </div>
+      <button class="icon-btn" id="closeSettings" type="button" title="Close">X</button>
+    </div>
+
+    <label class="switch-row">
+      <span>
+        <strong>Maintenance mode</strong>
+        <small>Pause visual noise and show diagnostics.</small>
+      </span>
+      <input type="checkbox" id="maintenanceMode">
+    </label>
+
+    <label class="switch-row">
+      <span>
+        <strong>Auto start voice</strong>
+        <small>Start Arya listener when the app opens.</small>
+      </span>
+      <input type="checkbox" id="voiceAutoStart">
+    </label>
+
+    <label class="switch-row">
+      <span>
+        <strong>Camera module</strong>
+        <small>Enable live camera panel.</small>
+      </span>
+      <input type="checkbox" id="cameraEnabled" checked>
+    </label>
+
+    <label class="switch-row">
+      <span>
+        <strong>Mic visualizer</strong>
+        <small>Animate the core from microphone energy.</small>
+      </span>
+      <input type="checkbox" id="micVisualizer">
+    </label>
+
+    <label class="api-key-row">
+      <span>
+        <strong>Gemini API key</strong>
+        <small id="geminiKeyStatus">Checking configuration…</small>
+      </span>
+      <input type="password" id="geminiApiKey" autocomplete="off" placeholder="Paste a Gemini API key">
+    </label>
+
+    <div class="drawer-actions">
+      <button class="primary-action" id="saveSettings" type="button">Apply Settings</button>
+      <button class="secondary-action" id="diagnosticsButton" type="button">Run Diagnostics</button>
+    </div>
+  </aside>
+
+<script src="main.js"></script>
+</body>
+</html>
